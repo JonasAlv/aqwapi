@@ -1,6 +1,6 @@
 # CoreBots-style HScript facade
 
-Branch: `feature/skua-parity-haxe`
+Branch: `skua-haxe`
 
 ## What is implemented
 
