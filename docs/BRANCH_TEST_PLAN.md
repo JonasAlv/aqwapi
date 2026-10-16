@@ -1,6 +1,6 @@
 # Feature branch verification plan
 
-Run these checks against `feature/skua-parity-haxe` before using the new helpers in real scripts. No automated test framework or Haxe compiler was available in the current environment, so these are pending validation steps rather than passed tests.
+Run these checks against `skua-haxe` before using the new helpers in real scripts. No automated test framework or Haxe compiler was available in the current environment, so these are pending validation steps rather than passed tests.
 
 ## Build / namespace smoke tests
 
