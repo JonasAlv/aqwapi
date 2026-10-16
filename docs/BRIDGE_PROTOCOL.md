@@ -6,7 +6,7 @@ It does **not** open a socket or locate the AQW game root itself. The bridge hos
 
 ## Request envelope
 
-The host forwards requests from aqw-elec over WebSocket `ws://127.0.0.1:4244` to the Flash-side bridge over TCP `127.0.0.1:4242`. Requests use the existing aqw-elec envelope:
+The host accepts desktop requests over aqw-elec's WebSocket at `ws://127.0.0.1:4244`. In aqw-elec's documented architecture, the raw TCP endpoint is `127.0.0.1:4243` (not 4242). The exact adapter path from the WebSocket host to the Flash-side bridge must preserve the envelope below:
 
 ```json
 { "instanceId": 0, "id": 1, "type": "GetState" }
@@ -42,7 +42,7 @@ Error response:
 
 - Keep the bridge bound to loopback; do not expose it to the LAN or public internet.
 - The initial protocol does not authenticate callers. Only run it on a trusted local machine and do not forward the port.
-- `Ping` is a transport/API check; `GetState.data.ready` indicates whether `Api.init(gameRoot)` has completed for this runtime.
+- `Ping.data.apiInitialized` reports whether the API has initialized; `GetState.data.ready` reports whether game/player state is available.
 - A successful `JoinMap` response means the request was accepted by the API, not that the map transition completed.
 - A successful `RunScript` response means the script was loaded and start was requested, not that every script operation succeeded.
 - This router is a first integration seam. Runtime validation and the actual Flash socket/loader adapter are still required before the desktop UI can control the game.
